@@ -15,6 +15,7 @@ const GREETINGS = [
 
 import FluidBackground from './FluidBackground';
 import RopeIntro from './RopeIntro';
+import ProjectsSection from './ProjectsSection';
 
 function App() {
   const [showIntro, setShowIntro] = useState(() => {
@@ -182,6 +183,7 @@ function App() {
             </div>
           </div>
         </section>
+        <ProjectsSection />
       </div>
     </>
   )
