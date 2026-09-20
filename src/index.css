@@ -3104,11 +3104,34 @@ section,
   box-shadow: 0 10px 35px rgba(0, 0, 0, 0.04);
 }
 
+.form-header-block {
+  margin-bottom: 1.6rem;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 1.1rem;
+}
+
+.form-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 0.4rem 0;
+  letter-spacing: -0.01em;
+}
+
+.form-subtitle {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.55;
+}
+
 .contact-form {
   display: flex;
   flex-direction: column;
   gap: 1.4rem;
 }
+
 
 .form-group {
   display: flex;

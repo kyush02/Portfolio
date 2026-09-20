@@ -135,7 +135,15 @@ export default function ContactSection() {
 
         {/* Professional Contact Form */}
         <div className="contact-form-container">
+          <div className="form-header-block">
+            <h3 className="form-title">Let's Connect</h3>
+            <p className="form-subtitle">
+              Have a suggestion, idea, question, or just want to connect? Feel free to drop me a message.
+            </p>
+          </div>
+
           <form onSubmit={handleSubmit} className="contact-form">
+
             <div className="form-group">
               <label htmlFor="contact-subject" className="form-label">
                 Subject
