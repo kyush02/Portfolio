@@ -24,6 +24,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import ResumeModal from './ResumeModal';
 import VisitorCounter from './VisitorCounter';
+import { Analytics } from '@vercel/analytics/react';
 
 function App() {
   const [showIntro, setShowIntro] = useState(() => {
@@ -114,18 +115,24 @@ function App() {
 
   return (
     <>
-      {showIntro && (
+      <Analytics />
+      {showIntro ? (
         <RopeIntro
           onComplete={() => {
             sessionStorage.setItem('ropeIntroShown', 'true');
             setShowIntro(false);
           }}
         />
+      ) : (
+        <>
+          <VisitorCounter />
+          <Navbar onOpenResume={() => setIsResumeOpen(true)} />
+        </>
       )}
       <FluidBackground />
-      <VisitorCounter />
-      <Navbar onOpenResume={() => setIsResumeOpen(true)} />
       <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
+
+
 
       <div className="portfolio-container">
         <section className="hero-section">
