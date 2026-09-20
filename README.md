@@ -16,6 +16,7 @@ A modern, responsive, and interactive personal portfolio web application built w
 - **⚙️ Dynamic Skills Matrix**: Interactive skill tags highlighting expertise in Python, C++, HTML, CSS, Git, and VS Code.
 - **💻 Projects Hub**: Showcase of featured projects with live demos and repository links (*MineSafe SIH Hackathon Project*, *HTML & CSS Projects*).
 - **📄 On-Page Resume Modal Viewer**: Built-in PDF resume viewer modal with direct one-click PDF downloading.
+- **📊 Vercel Web Analytics**: Native integration with `@vercel/analytics` for tracking visitor page views and audience insights.
 - **📍 Centered Footer**: Clean footer displaying developer location (**Patna, Bihar**) and dynamic copyright details.
 
 ---
@@ -23,7 +24,9 @@ A modern, responsive, and interactive personal portfolio web application built w
 ## 🛠️ Tech Stack
 
 - **Frontend Core**: React 19, Javascript (ES6+)
+- **Analytics & Insights**: `@vercel/analytics`
 - **Build Tooling**: Vite 8, Oxlint
+
 - **Styling**: Vanilla CSS (Custom Design System with Glassmorphism, Micro-Animations & Responsive Layouts)
 - **Interactive Graphics**: WebGL Fluid Simulation (`webgl-fluid`), HTML5 Canvas Physics
 - **Icons & Assets**: SVG Icon sets, PDF Viewer Integration
