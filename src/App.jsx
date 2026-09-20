@@ -16,6 +16,14 @@ const GREETINGS = [
 import FluidBackground from './FluidBackground';
 import RopeIntro from './RopeIntro';
 import ProjectsSection from './ProjectsSection';
+import SkillsSection from './SkillsSection';
+import AchievementsSection from './AchievementsSection';
+import CertificationsSection from './CertificationsSection';
+import ContactSection from './ContactSection';
+import Navbar from './Navbar';
+import Footer from './Footer';
+import ResumeModal from './ResumeModal';
+import VisitorCounter from './VisitorCounter';
 
 function App() {
   const [showIntro, setShowIntro] = useState(() => {
@@ -27,8 +35,9 @@ function App() {
   const [greeting, setGreeting] = useState('');
   const [index, setIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
   
-  const [aboutVisible, setAboutVisible] = useState(false);
+  const [aboutVisible, setAboutVisible] = useState(true);
   const aboutRef = useRef(null);
 
   useEffect(() => {
@@ -64,10 +73,9 @@ function App() {
       ([entry]) => {
         if (entry.isIntersecting) {
           setAboutVisible(true);
-          observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.01, rootMargin: '100px' }
     );
     if (aboutRef.current) {
       observer.observe(aboutRef.current);
@@ -115,6 +123,10 @@ function App() {
         />
       )}
       <FluidBackground />
+      <VisitorCounter />
+      <Navbar onOpenResume={() => setIsResumeOpen(true)} />
+      <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
+
       <div className="portfolio-container">
         <section className="hero-section">
           <div ref={heroTextRef} className="portfolio-content" style={{ transform: 'scale(1)', willChange: 'transform' }}>
@@ -130,7 +142,7 @@ function App() {
           <div className="about-inner">
             <div className="about-grid">
               {/* Left Column: About me */}
-              <div className="about-column">
+              <div className="about-column" id="about">
                 <h2 className="about-section-heading has-dash">ABOUT ME</h2>
                 <div className="about-me-card">
                   <p className="about-text">
@@ -146,7 +158,7 @@ function App() {
               </div>
               
               {/* Right Column: Education */}
-              <div className="education-column">
+              <div className="education-column" id="education">
                 <h2 className="about-section-heading">EDUCATION</h2>
                 <div className="education-cards-stack">
                   {/* Card 1: GGV */}
@@ -183,10 +195,15 @@ function App() {
             </div>
           </div>
         </section>
+        <AchievementsSection />
+        <CertificationsSection />
+        <SkillsSection />
         <ProjectsSection />
+        <ContactSection />
+        <Footer />
       </div>
     </>
   )
 }
 
-export default App
+export default App;
