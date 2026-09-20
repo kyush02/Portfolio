@@ -4,6 +4,12 @@ export default function ContactSection() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
 
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState('');
+  const [statusType, setStatusType] = useState(''); // 'success' | 'error'
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -22,6 +28,58 @@ export default function ContactSection() {
     return () => observer.disconnect();
   }, []);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const cleanSubject = subject.trim();
+    const cleanMessage = message.trim();
+
+    if (!cleanSubject || !cleanMessage) {
+      setStatusType('error');
+      setStatusMessage('Please fill out all fields before sending.');
+      return;
+    }
+
+    if (cleanMessage.length < 5) {
+      setStatusType('error');
+      setStatusMessage('Message should be at least 5 characters long.');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setStatusMessage('');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          subject: cleanSubject,
+          message: cleanMessage,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setStatusType('success');
+        setStatusMessage("Message sent successfully! I'll get back to you soon.");
+        setSubject('');
+        setMessage('');
+      } else {
+        setStatusType('error');
+        setStatusMessage('Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      setStatusType('error');
+      setStatusMessage('Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section
       ref={sectionRef}
@@ -36,24 +94,8 @@ export default function ContactSection() {
           </p>
         </div>
 
-        <div className="contact-cards-grid">
-          <a
-            href="mailto:kyushkumar@gmail.com"
-            className="contact-card"
-            aria-label="Send an email to Kyush Kumar"
-          >
-            <div className="contact-icon-wrapper">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                <polyline points="22,6 12,13 2,6" />
-              </svg>
-            </div>
-            <div className="contact-card-info">
-              <span className="contact-label">Email</span>
-              <span className="contact-value">kyushkumar@gmail.com</span>
-            </div>
-          </a>
-
+        {/* 2 Clean Social Cards: GitHub & LinkedIn */}
+        <div className="contact-cards-grid two-columns">
           <a
             href="https://github.com/kyush02"
             target="_blank"
@@ -89,6 +131,83 @@ export default function ContactSection() {
               <span className="contact-value">linkedin.com/in/kyush-kumar</span>
             </div>
           </a>
+        </div>
+
+        {/* Professional Contact Form */}
+        <div className="contact-form-container">
+          <form onSubmit={handleSubmit} className="contact-form">
+            <div className="form-group">
+              <label htmlFor="contact-subject" className="form-label">
+                Subject
+              </label>
+              <input
+                type="text"
+                id="contact-subject"
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
+                placeholder="Subject of your message"
+                className="form-input"
+                required
+                disabled={isSubmitting}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="contact-message" className="form-label">
+                Message
+              </label>
+              <textarea
+                id="contact-message"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder="Write your message here..."
+                className="form-textarea"
+                rows={5}
+                required
+                disabled={isSubmitting}
+              />
+            </div>
+
+            {statusMessage && (
+              <div className={`form-status-alert status-${statusType}`} role="alert">
+                {statusType === 'success' ? (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                ) : (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="8" x2="12" y2="12" />
+                    <line x1="12" y1="16" x2="12.01" y2="16" />
+                  </svg>
+                )}
+                <span>{statusMessage}</span>
+              </div>
+            )}
+
+            <div className="form-action-row">
+              <button
+                type="submit"
+                disabled={isSubmitting || !subject.trim() || !message.trim()}
+                className="contact-submit-btn"
+              >
+                {isSubmitting ? (
+                  <>
+                    <span className="submit-spinner" />
+                    <span>Sending...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Send Message</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="22" y1="2" x2="11" y2="13" />
+                      <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                    </svg>
+                  </>
+                )}
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </section>
