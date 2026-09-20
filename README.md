@@ -17,6 +17,7 @@ A modern, responsive, and interactive personal portfolio web application built w
 - **💻 Projects Hub**: Showcase of featured projects with live demos and repository links (*MineSafe SIH Hackathon Project*, *HTML & CSS Projects*).
 - **📄 On-Page Resume Modal Viewer**: Built-in PDF resume viewer modal with direct one-click PDF downloading.
 - **📊 Vercel Web Analytics**: Native integration with `@vercel/analytics` for tracking visitor page views and audience insights.
+- **⚡ Vercel Speed Insights**: Real-time Core Web Vitals performance monitoring with `@vercel/speed-insights`.
 - **📍 Centered Footer**: Clean footer displaying developer location (**Patna, Bihar**) and dynamic copyright details.
 
 ---
@@ -24,8 +25,9 @@ A modern, responsive, and interactive personal portfolio web application built w
 ## 🛠️ Tech Stack
 
 - **Frontend Core**: React 19, Javascript (ES6+)
-- **Analytics & Insights**: `@vercel/analytics`
+- **Analytics & Insights**: `@vercel/analytics`, `@vercel/speed-insights`
 - **Build Tooling**: Vite 8, Oxlint
+
 
 - **Styling**: Vanilla CSS (Custom Design System with Glassmorphism, Micro-Animations & Responsive Layouts)
 - **Interactive Graphics**: WebGL Fluid Simulation (`webgl-fluid`), HTML5 Canvas Physics

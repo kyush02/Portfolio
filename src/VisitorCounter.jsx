@@ -4,17 +4,20 @@ export default function VisitorCounter() {
   const [visitorCount, setVisitorCount] = useState(null);
 
   useEffect(() => {
-    const BASE_COUNT = 142;
-    const STORAGE_KEY = 'portfolio_visitor_count';
+    const STORAGE_KEY = 'portfolio_session_visitor_count';
     const SESSION_KEY = 'portfolio_session_active';
 
-    let count = parseInt(localStorage.getItem(STORAGE_KEY) || `${BASE_COUNT}`, 10);
-    if (isNaN(count)) count = BASE_COUNT;
+    // Retrieve previous session count (starts at 1 for the initial visit)
+    let count = parseInt(localStorage.getItem(STORAGE_KEY) || '1', 10);
+    if (isNaN(count) || count < 1) count = 1;
 
-    // Increment count if this is a new browser session
+    // Check if this is a new browser session
     const isSessionActive = sessionStorage.getItem(SESSION_KEY);
     if (!isSessionActive) {
-      count += 1;
+      // Increment count only when a new browser session is initiated after the first visit
+      if (localStorage.getItem(STORAGE_KEY)) {
+        count += 1;
+      }
       localStorage.setItem(STORAGE_KEY, count.toString());
       sessionStorage.setItem(SESSION_KEY, 'true');
     }
