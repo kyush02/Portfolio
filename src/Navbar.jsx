@@ -112,6 +112,13 @@ export default function Navbar({ onOpenResume }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const toggleMobileMenu = (e) => {
+    if (e) {
+      e.stopPropagation();
+    }
+    setMobileMenuOpen((prev) => !prev);
+  };
+
   const handleNavClick = (e, item) => {
     e.preventDefault();
     const btn = e.currentTarget;
@@ -164,13 +171,15 @@ export default function Navbar({ onOpenResume }) {
 
       {/* Mobile Menu Container & FAB Toggle */}
       <div className="mobile-nav-wrapper">
-        {/* Floating Action Button (3-lines / X) */}
+        {/* Symmetrical Glassmorphism Toggle Button (Top-Right Corner) */}
         <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          type="button"
+          onClick={toggleMobileMenu}
           className={`mobile-nav-toggle-btn ${mobileMenuOpen ? 'is-active' : ''}`}
           aria-label={mobileMenuOpen ? 'Close Navigation Menu' : 'Open Navigation Menu'}
           aria-expanded={mobileMenuOpen}
         >
+
           {mobileMenuOpen ? (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <line x1="18" y1="6" x2="6" y2="18" />
