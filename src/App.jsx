@@ -25,6 +25,7 @@ import Footer from './Footer';
 import ResumeModal from './ResumeModal';
 import VisitorCounter from './VisitorCounter';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 function App() {
   const [showIntro, setShowIntro] = useState(() => {
@@ -116,6 +117,8 @@ function App() {
   return (
     <>
       <Analytics />
+      <SpeedInsights />
+
       {showIntro ? (
         <RopeIntro
           onComplete={() => {
