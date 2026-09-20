@@ -2577,6 +2577,188 @@ section,
   }
 }
 
+/* ==========================================================================
+   Mobile Grid Navigation Menu
+   ========================================================================== */
+.mobile-nav-wrapper {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .floating-navbar-container {
+    display: none !important;
+  }
+
+  .mobile-nav-wrapper {
+    display: block;
+  }
+
+  /* Floating Circular FAB Toggle Button */
+  .mobile-nav-toggle-btn {
+    position: fixed;
+    bottom: 1.75rem;
+    right: 1.5rem;
+    z-index: 99999;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: #0f172a;
+    border: none;
+    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4), 0 2px 6px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .mobile-nav-toggle-btn:active {
+    transform: scale(0.92);
+  }
+
+  .mobile-nav-toggle-btn.is-active {
+    background: linear-gradient(135deg, #10b981, #047857);
+    color: #ffffff;
+    box-shadow: 0 12px 30px rgba(16, 185, 129, 0.5);
+  }
+
+  /* Backdrop Overlay */
+  .mobile-menu-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 99997;
+    animation: mobileMenuFadeIn 0.25s ease-out;
+  }
+
+  @keyframes mobileMenuFadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Floating Menu Grid Card */
+  .mobile-menu-card {
+    position: fixed;
+    bottom: 6rem;
+    right: 1.5rem;
+    width: calc(100vw - 3rem);
+    max-width: 320px;
+    background: rgba(15, 23, 42, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08);
+    z-index: 99998;
+    overflow: hidden;
+    animation: mobileMenuCardPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes mobileMenuCardPop {
+    from {
+      opacity: 0;
+      transform: scale(0.9) translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  /* 2-Column Grid Layout */
+  .mobile-menu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+    padding: 1.1rem;
+  }
+
+  .mobile-menu-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1.15rem 0.5rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    color: #94a3b8;
+    text-decoration: none;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .mobile-menu-tile:active,
+  .mobile-menu-tile:hover {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(16, 185, 129, 0.3);
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  .mobile-tile-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #cbd5e1;
+    transition: color 0.2s ease;
+  }
+
+  .mobile-menu-tile:hover .mobile-tile-icon,
+  .mobile-menu-tile:active .mobile-tile-icon {
+    color: #10b981;
+  }
+
+  .mobile-tile-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: inherit;
+  }
+
+  /* Bottom Row Footer */
+  .mobile-menu-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0.75rem 1.25rem 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .mobile-social-icon {
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+
+  .mobile-social-icon:hover,
+  .mobile-social-icon:active {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+
 
 
 
