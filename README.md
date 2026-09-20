@@ -80,4 +80,4 @@ RESEND_API_KEY=your_resend_api_key_here
 - 🌐 **Portfolio**: [kyush-portfolio.vercel.app](https://kyush-portfolio.vercel.app/)
 - 💻 **GitHub**: [@kyush02](https://github.com/kyush02)
 - 👔 **LinkedIn**: [kyush-kumar](https://linkedin.com/in/kyush-kumar)
-- ✉️ **Email**: kyushkumar212@gmail.com / kyushkumar@gmail.com
+- ✉️ **Email**: kyushkumar212@gmail.com
